@@ -5,6 +5,7 @@
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
 
 <form method="post" action=""> {% csrf_token %}
     <div class="inset">
