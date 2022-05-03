@@ -52,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -149,4 +148,4 @@ MESSAGE_TAGS={
     error_messages.ERROR: 'danger',
 }
 
-CSRF_TRUSTED_ORIGINS=['http://*', 'https://*']
+CSRF_TRUSTED_ORIGINS=['https://venom-classifier.herokuapp.com/']
