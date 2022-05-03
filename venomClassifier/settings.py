@@ -147,3 +147,5 @@ MESSAGE_TAGS={
     error_messages.WARNING: 'warning',
     error_messages.ERROR: 'danger',
 }
+
+CSRF_TRUSTED_ORIGINS=['https://venom-classifier.herokuapp.com/']
