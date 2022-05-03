@@ -149,5 +149,4 @@ MESSAGE_TAGS={
     error_messages.ERROR: 'danger',
 }
 
-ALLOWED_ORIGINS = ['http://*', 'https://*']
-CSRF_TRUSTED_ORIGINS = ALLOWED_ORIGINS.copy()
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
