@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
+from django.views.decorators.csrf import requires_csrf_token
 
 class viewRegister(View):
     
@@ -34,6 +34,7 @@ def close_session(request):
 
     return redirect('Home')
 
+@requires_csrf_token
 def logIn(request):
     if request.method=="POST":
         form=AuthenticationForm(request, data=request.POST)
