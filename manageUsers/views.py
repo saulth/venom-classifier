@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.views.decorators.csrf import csrf_protect
 from django.template.context_processors import csrf
 
-@csrf_protect
+
 class viewRegister(View):
     
     def get(self, request):
@@ -39,7 +39,7 @@ def close_session(request):
 
     return redirect('Home')
 
-@csrf_protect
+
 def logIn(request):
     if request.method=="POST":
         form=AuthenticationForm(request, data=request.POST)
