@@ -1,0 +1,147 @@
+{% extends "venomClassifierApp/__base.html" %}
+
+{% block title %} Clasifica tus secuencias {% endblock %}
+
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+    <!--/#main-nav-->
+    <main>
+        <div id="clasificator" class="parallax">
+            <div style="text-align:center;">
+                <div id ="Help" style="text-align: left;">
+                    <nav id ="menuu">
+                       <ul>
+                            <li>
+                                <br><a href="#"><img src="{% static 'images/help.ico' %}" style="height: 4vh;"></a>
+                                <ul>
+                                    <li>
+                                        <p class="desp">
+                                            VenomClassifier only supports protein chains with a size less than or equal to 600 chars.
+                                        </p>
+                                        <p class="desp">Dictionary of amino acid abbreviations:</p>
+                                        <img src="{% static 'images/Abreviaciones.jpg' %}">
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul> 
+                    </nav>
+                </div>
+            </div>
+            <div class="container ">
+                <div class="heading wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms">
+                </div>
+                <div class="heading wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms">
+                    <div class="row">
+                        <form method="post" action=""> {% csrf_token %}
+                            <div class="text-center col-sm-8 col-sm-offset-2">
+                                <h2><strong>Write your sequence</strong></h2>
+                                <div class="parallax_b">
+                                    <strong>
+                                        {{ form.sequence }}
+                                </strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-center col-sm-8 col-sm-offset-2">
+                                    <br>
+                                    <input type="submit" class="btn btn-lg btn-primary" value="Predict">
+                                </div>
+                            </div>
+                            <div class="row">
+                        </form>
+
+                    </div>
+                        <br>
+                        <link rel="stylesheet" href="{% static 'css/stickytable.css' %}">
+                        <div class="text-center col-sm-8 col-sm-offset-2 view">
+                            <h2><strong>Results</strong></h2>
+                            <!-- <div class="parallax_b" style="display: flex; justify-content: center;"> -->
+                                <table border=2 style="border-color: white; background-color: aliceblue; opacity: .7;">
+                                    <thead class="predTableRow">
+                                        <th class="predTableCol sticky-col sticky-col first-col">Prediction</th>
+                                        <th class="predTableCol">Not-Venom %</th>
+                                        <th class="predTableCol">Venom %</th>
+                                        <th class="predTableCol">Sequence</th>
+                                    </thead>
+
+                                    {% for pred in predictionList %}
+                                        <tr class="predTableRow">
+                                            <td class="predTableCol sticky-col first-col">{{pred.prediction}}</td>
+                                            <td class="predTableCol">{{pred.probnotvenom}}%</td>
+                                            <td class="predTableCol">{{pred.probvenom}}%</td>
+                                            <td  class="predTableCol" style="text-transform: uppercase; text-align: left">{{pred.sequence}}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center col-sm-8 col-sm-offset-2">
+                            <br>
+                            <form method="post" action=""> {% csrf_token %}
+                                <input type="submit" class="btn btn-lg btn-primary" value="Clear">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    
+    <!--#footer-->
+    <footer id="footer">
+        <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+          <div class="container text-center">
+            <div class="footer-logo">
+              <a href="{% url 'Home' %}"><img class="img-responsive" src="{% static 'images/logo.png' %}" alt=""></a>
+            </div>
+
+          </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+            $(document).ready(function(){
+                $('textarea[name="sequence"]').keypress(function (e) {
+                    $("#error_msg").html("");
+                    var key = e.keyCode;
+                    $return = (key == 8 || (key > 64 && key < 91) || (key > 96 && key < 123));
+                    if(!$return) {
+                    $("#error_msg").html("No special characters Please!");
+                    return false;
+                    }
+                });
+            });
+    </script>
+    <style>
+        #id_sequence {
+            display: block;
+            width: 100%;
+            background-color: aliceblue; 
+            opacity: .7; 
+            text-transform: uppercase;
+            min-height: 180px;
+            resize: none;
+            font-weight: 300;
+            color: rgb(0, 0, 0);
+            height: auto;
+            border-color: rgba(255,255,255,.1);
+            border-radius: 0;
+            box-shadow: none;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            background-image: none;
+            border: 1px solid #ccc;
+            font-family: inherit;
+            overflow: auto;
+        }
+    </style>
+{% endblock %}

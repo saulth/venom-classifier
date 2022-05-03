@@ -1,0 +1,31 @@
+{% extends "venomClassifierApp/__base.html" %}
+
+{% block title %} Log In {% endblock %}
+
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+<form method="post" action=""> {% csrf_token %}
+    <div class="inset">
+        {% if messages %}
+
+            {% for msg in messages %}
+
+                <span class="alert alert-{{msg.tags}}" style="padding-bottom: 5px; padding-top: 5px;"> {{msg}} </span>    
+
+            {% endfor %}
+
+        {% endif %}
+        <br>
+        {{form|crispy}}
+    </div>
+    <p class="p-cont">
+        <a href="{% url 'Register' %}">Sign Up</a>
+        <input type="submit" name="go" id="go" value="Sign In">
+    </p>
+</form>
+
+
+{% endblock %}
