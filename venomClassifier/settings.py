@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pfmm@h33r2ddvrttv70cjh!g-%ml9hx1-9k@=5mgrhm1!1iys!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -148,4 +148,4 @@ MESSAGE_TAGS={
     error_messages.ERROR: 'danger',
 }
 
-CSRF_TRUSTED_ORIGINS=['venom-classifier.herokuapp.com']
+CSRF_TRUSTED_ORIGINS=['https://venom-classifier.herokuapp.com']
