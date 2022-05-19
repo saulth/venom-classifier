@@ -7,7 +7,7 @@ from django.contrib.messages import constants as error_messages
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-pfmm@h33r2ddvrttv70cjh!g-%ml9hx1-9k@=5mgrhm1!1iys!'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -66,14 +66,7 @@ WSGI_APPLICATION = 'venomClassifier.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd9cqu4fol4ipjp',
-        'USER': 'rzdgvogsgfwtro',
-        'PASSWORD':'b0cab9b350b6c5734208bb4a243fa99bab9ca43911a5f54b2b90e9a2166fa896',
-        'HOST':'ec2-3-229-11-55.compute-1.amazonaws.com',
-        'DATABASE_PORT':'5432',
-    }
+    
 }
 
 
